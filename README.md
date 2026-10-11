@@ -25,7 +25,7 @@ The names are configurable in `run_checkdecay`.
 From this directory:
 
 ```bash
-  root -l -q 'run_checkdecay.C("simulate",1000000)'
+root -l -q 'run_checkdecay.C("simulate",1000000)'
 ```
 
 Default output:
@@ -45,7 +45,7 @@ hJpsiPidEfficiency
 When the input tree is ready, put it under `input/` and run:
 
 ```bash
-  root -l -q 'run_checkdecay.C("tree",1000000,"input/pid_efficiency_maps.root","output/jpsi_pid_efficiency.root",80,0,20,80,-4,4,"input/jpsi_to_ee_tree.root","jpsiTree",12345,0.85,0.90,0.70,"hPidEffAvg","hPidEffIfOtherPass","hPidEffIfOtherFail","gen",0)'
+root -l -q 'run_checkdecay.C("tree",1000000,"input/pid_efficiency_maps.root","output/jpsi_pid_efficiency.root",80,0,20,80,-4,4,"input/jpsi_to_ee_tree.root","jpsiTree",12345,0.85,0.90,0.70,"hPidEffAvg","hPidEffIfOtherPass","hPidEffIfOtherFail","gen",0)'
 ```
 
 The last arguments select the tree level and cuts:
@@ -75,7 +75,7 @@ Default selection:
 Example:
 
 ```bash
-  root -l -q 'run_checkdecay.C("tree",1000000,"input/pid_efficiency_maps.root","output/jpsi_pid_efficiency_rec.root",80,0,20,80,-4,4,"input/jpsi_to_ee_tree.root","jpsiTree",12345,0.85,0.90,0.70,"hPidEffAvg","hPidEffIfOtherPass","hPidEffIfOtherFail","rec",0,0,true)'
+root -l -q 'run_checkdecay.C("tree",1000000,"input/pid_efficiency_maps.root","output/jpsi_pid_efficiency_rec.root",80,0,20,80,-4,4,"input/jpsi_to_ee_tree.root","jpsiTree",12345,0.85,0.90,0.70,"hPidEffAvg","hPidEffIfOtherPass","hPidEffIfOtherFail","rec",0,0,true)'
 ```
 
 Required branch/leaf names:
