@@ -45,14 +45,53 @@ hJpsiPidEfficiency
 When the input tree is ready, put it under `input/` and run:
 
 ```bash
-  root -l -q 'run_checkdecay.C("tree",1000000,"input/pid_efficiency_maps.root","output/jpsi_pid_efficiency.root",80,0,20,80,-4,4,"input/jpsi_to_ee_tree.root","jpsiTree")'
+  root -l -q 'run_checkdecay.C("tree",1000000,"input/pid_efficiency_maps.root","output/jpsi_pid_efficiency.root",80,0,20,80,-4,4,"input/jpsi_to_ee_tree.root","jpsiTree",12345,0.85,0.90,0.70,"hPidEffAvg","hPidEffIfOtherPass","hPidEffIfOtherFail","gen",0)'
+```
+
+The last arguments select the tree level and cuts:
+
+- `treeLevel = "gen"` or `"rec"`
+- `mcDecisionBit = 0` by default; set to `-1` to disable this cut.
+- `filterMapBit = 0` by default for rec trees; set to `-1` to disable this cut.
+- `requireCorrectAssoc = true` by default for rec trees.
+
+### Gen-Level Tree
+
+Required branch/leaf names:
+
+- J/psi: `fE`, `fPt`, `fEta`, `fPhi`
+- leg 1: `fPtMC1`, `fEtaMC1`, `fPhiMC1`
+- leg 2: `fPtMC2`, `fEtaMC2`, `fPhiMC2`
+- selection: `fMcDecision`
+
+Default selection:
+
+```text
+(fMcDecision & (1u << 0)) != 0
+```
+
+### Rec-Level Tree
+
+Example:
+
+```bash
+  root -l -q 'run_checkdecay.C("tree",1000000,"input/pid_efficiency_maps.root","output/jpsi_pid_efficiency_rec.root",80,0,20,80,-4,4,"input/jpsi_to_ee_tree.root","jpsiTree",12345,0.85,0.90,0.70,"hPidEffAvg","hPidEffIfOtherPass","hPidEffIfOtherFail","rec",0,0,true)'
 ```
 
 Required branch/leaf names:
 
-- `jpsi_pt`, `jpsi_eta`, `jpsi_phi`, `jpsi_energy`
-- `leg1_pt`, `leg1_eta`, `leg1_phi`
-- `leg2_pt`, `leg2_eta`, `leg2_phi`
+- J/psi: `fMass`, `fPt`, `fEta`, `fPhi`
+- leg 1: `fPt1`, `fEta1`, `fPhi1`
+- leg 2: `fPt2`, `fEta2`, `fPhi2`
+- selection: `fMcDecision`, `fFilterMap`, `fIsCorrectAssoc`
+
+Default selection:
+
+```text
+(fMcDecision & (1u << 0)) != 0
+(fFilterMap & (1u << 0)) != 0
+fIsCorrectAssoc == true
+```
 
 ## Defaults Before Inputs Exist
 
