@@ -101,4 +101,4 @@ If `input/pid_efficiency_maps.root` is not present, the macro still runs with fa
 - if other leg passes: `0.90`
 - if other leg fails: `0.70`
 
-These are only placeholders so the workflow can be tested before the real maps are available.
+ These are only placeholders so the workflow can be tested before the real maps are available.
